@@ -10,7 +10,7 @@ const DESC = '庆祝中国共产党建党97周年--大型系列文化活动！';
 
 //微信配置
 const href = window.location.href;
-axios.post('https://a.weixin.hndt.com/at/sign', { url: href }).then((res) => {
+axios.post('https://a.weixin.hndt.com/at/sign', Qs.stringify({ url: href })).then((res) => {
 	let data = res.data;
 	wx.config({
 		debug: false,
@@ -95,7 +95,7 @@ function uploadVoice(voiceLocalId) {
 			axios({
 				method: 'get',
 				url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
-				data: { mediaId: res.serverId, openId: openId, name: songName }
+				data: Qs.stringify({ mediaId: res.serverId, openId: openId, name: songName })
 			}).then(() => {
 				weui.toast('上传成功！');
 			});
