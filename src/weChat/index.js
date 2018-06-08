@@ -2,7 +2,10 @@ import wx from 'weixin-js-sdk';
 import axios from 'axios';
 import weui from 'weui.js';
 import Qs from 'qs';
-import { weChat, weChatConf } from './util';
+import WeChat from './util';
+
+const weChat = new WeChat();
+
 const TITLE = '给党唱支生日歌--庆祝中国共产党建党97周年';
 const LINK = 'https://a.weixin.hndt.com/h5/test/index.html?cid=' + weChat.getQueryString('cid'); //分享链接
 const IMG_URL = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
@@ -109,7 +112,7 @@ if (!weChat.getQueryString('code')) {
 	axios({
 		method: 'post',
 		url: 'https://a.weixin.hndt.com/boom/api/token/access/redirect2',
-		data: Qs.stringify({ code: weChat.getQueryString('code'), cate: weChatConf.appId })
+		data: Qs.stringify({ code: weChat.getQueryString('code'), cate: weChat.appId })
 	})
 		.then((res) => {
 			let data = res.data;
