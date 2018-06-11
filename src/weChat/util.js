@@ -1,3 +1,4 @@
+import wx from 'weixin-js-sdk';
 import axios from 'axios';
 import Qs from 'qs';
 class WeChat {
@@ -68,4 +69,40 @@ class WeChat {
 	}
 }
 
-export default WeChat;
+class WeChatConf extends WeChat {
+	constructor() {
+		super();
+		this.title = '给党唱支生日歌--庆祝中国共产党建党97周年';
+		this.link = 'https://a.weixin.hndt.com/h5/test/index.html?cid=' + this.getQueryString('cid'); //分享链接
+		this.img_url = 'http://www.hndt.com/h5/partysday/PartysDay.jpg';
+		this.desc = '庆祝中国共产党建党97周年--大型系列文化活动！';
+	}
+	init() {
+		this.hasCode();
+		axios.post('https://a.weixin.hndt.com/at/sign', Qs.stringify({ url: window.location.href })).then((res) => {
+			let data = res.data;
+			wx.config({
+				debug: false,
+				appId: data.appId,
+				timestamp: data.timestamp,
+				nonceStr: data.nonceStr,
+				signature: data.signature,
+				jsApiList: [
+					'onMenuShareTimeline',
+					'onMenuShareAppMessage',
+					'chooseImage',
+					'previewImage',
+					'startRecord',
+					'playVoice',
+					'stopRecord',
+					'downloadVoice',
+					'uploadVoice',
+					'stopVoice',
+					'openLocation'
+				]
+			});
+		});
+	}
+}
+
+export { WeChat, WeChatConf };
