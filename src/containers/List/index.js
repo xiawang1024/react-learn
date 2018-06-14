@@ -2,22 +2,36 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as userinfoActions from '../../store/actions/userinfo';
 class List extends Component {
 	gotoDetail(item) {
 		this.props.history.push(`/detail/${item}`);
 	}
+	updateUserInfo() {
+		let { userinfoActions } = this.props;
+		userinfoActions.login({
+			name: 'gyy',
+			age: 26
+		});
+	}
 	render() {
 		const arr = [ 1, 2, 3 ];
+		let { userinfo } = this.props;
 		return (
-			<ul>
-				{arr.map((item, index) => {
-					return (
-						<li key={index} onClick={this.gotoDetail.bind(this, item)}>
-							js jump to {item}
-						</li>
-					);
-				})}
-			</ul>
+			<div>
+				<ul>
+					{arr.map((item, index) => {
+						return (
+							<li key={index} onClick={this.gotoDetail.bind(this, item)}>
+								js jump to {item}
+							</li>
+						);
+					})}
+				</ul>
+				<p>{userinfo.name}</p>
+				<p>{userinfo.age}</p>
+				<button onClick={this.updateUserInfo.bind(this)}>修改</button>
+			</div>
 		);
 	}
 	clickHandler(item) {
