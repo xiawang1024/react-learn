@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 class List extends Component {
 	gotoDetail(item) {
 		this.props.history.push(`/detail/${item}`);
@@ -20,4 +22,14 @@ class List extends Component {
 	}
 }
 
-export default withRouter(List);
+const mapStateToProps = (state) => {
+	return {
+		userinfo: state.userinfo
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return { userinfoActions: bindActionCreators(userinfoActions, dispatch) };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(List));
