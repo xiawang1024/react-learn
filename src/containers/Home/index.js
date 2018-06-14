@@ -10,7 +10,6 @@ class Home extends Component {
 			<div className="Home">
 				<h1>Home</h1>
 				<Link to="/list">列表</Link>
-				{this.props.location}
 			</div>
 		);
 	}
