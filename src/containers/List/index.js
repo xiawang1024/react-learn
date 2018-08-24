@@ -8,10 +8,12 @@ class List extends Component {
 		this.props.history.push(`/detail/${item}`);
 	}
 	updateUserInfo() {
-		let { userinfoActions } = this.props;
+		let { userinfoActions, userinfo } = this.props;
+		let { age } = userinfo;
+		age++;
 		userinfoActions.login({
 			name: 'gyy',
-			age: 26
+			age
 		});
 	}
 	render() {
