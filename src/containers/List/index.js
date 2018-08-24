@@ -3,33 +3,40 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userinfoActions from '../../store/actions/userinfo';
-
 class List extends Component {
 	gotoDetail(item) {
-		// this.props.history.push(`/detail/${item}`);
-		this.props.userinfoActions.updateUserInfo({ name: 'gyy', age: 26 });
-		console.log('------------------------------------');
-		console.log(this.props.userinfo);
-		console.log('------------------------------------');
+		this.props.history.push(`/detail/${item}`);
+	}
+	updateUserInfo() {
+		let { userinfoActions } = this.props;
+		userinfoActions.login({
+			name: 'gyy',
+			age: 26
+		});
 	}
 	render() {
 		const arr = [ 1, 2, 3 ];
+		let { userinfo } = this.props;
 		return (
-			<ul>
-				<li />
-				{arr.map((item, index) => {
-					return (
-						<li
-							key={index}
-							onClick={this.gotoDetail.bind(this, item)}
-							style={{ lineHeight: 2, cursor: 'pointer' }}
-						>
-							js jump to {item}
-						</li>
-					);
-				})}
-			</ul>
+			<div>
+				<ul>
+					{arr.map((item, index) => {
+						return (
+							<li key={index} onClick={this.gotoDetail.bind(this, item)}>
+								js jump to {item}
+							</li>
+						);
+					})}
+				</ul>
+				<p>{userinfo.name}</p>
+				<p>{userinfo.age}</p>
+				<button onClick={this.updateUserInfo.bind(this)}>修改</button>
+			</div>
 		);
+	}
+	clickHandler(item) {
+		console.log(this.props);
+		this.props.history.push('/detail/' + item);
 	}
 }
 

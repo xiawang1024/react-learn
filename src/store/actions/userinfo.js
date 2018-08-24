@@ -1,15 +1,15 @@
 import * as actionTypes from '../constants/userinfo';
 
-export function userLogin(data) {
+export const login = (data) => {
 	return {
 		type: actionTypes.USER_LOGIN,
 		data
 	};
-}
+};
 
-export function updateUserInfo(data) {
+export const updateUserInfo = (data) => {
 	return {
 		type: actionTypes.UPDATE_USER_INFO,
 		data
 	};
-}
+};
