@@ -28,14 +28,17 @@ class List extends Component {
   }
   componentDidMount() {
     console.log(this.props)
-    this.eventEmitter = emitter.addListener("callMe",(msg)=>{
-      this.setState({
-        name:'gyy'
-      })
-    });
+    // this.eventEmitter = emitter.addListener("callMe",(msg)=>{
+    //   this.setState({
+    //     name:'gyy'
+    //   })
+    // });
+    emitter.on('callMe',(msg) => {
+      alert(msg)
+    })
   }
   componentWillUnmount() {
-    emitter.removeListener(this.eventEmitter);
+    
   }
   render() {
     const arr = [1, 2, 3]
