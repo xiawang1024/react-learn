@@ -51,7 +51,7 @@ class WeChat {
 		})
 			.then((res) => {
 				let data = res.data;
-				if (data.status == 'ok') {
+				if (data.status === 'ok') {
 					this.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
 				} else {
 					this.redirectUrl();
