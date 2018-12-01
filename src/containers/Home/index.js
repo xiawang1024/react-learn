@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link, Prompt, withRouter } from 'react-router-dom'
 import { Button } from 'react-weui'
 
+import emitter from '../../utils/event'
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -9,6 +11,12 @@ class Home extends Component {
   }
   toList = () => {
     this.props.history.push('/list')
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      emitter.emit("callMe","Hello")
+      console.log('call')
+    },3000)
   }
   render() {
     return (

@@ -3,10 +3,17 @@ import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as userinfoActions from '../../store/actions/userinfo'
+import emitter from '../../utils/event'
 
 import { Button, Article, Cells, Cell, CellBody, CellFooter } from 'react-weui'
 
 class List extends Component {
+  constructor(props) {
+    super(props)
+    this.state= {
+      name:'wangxia'
+    }
+  }
   gotoDetail(item) {
     this.props.history.push(`/detail/${item}`)
   }
@@ -21,6 +28,14 @@ class List extends Component {
   }
   componentDidMount() {
     console.log(this.props)
+    this.eventEmitter = emitter.addListener("callMe",(msg)=>{
+      this.setState({
+        name:'gyy'
+      })
+    });
+  }
+  componentWillUnmount() {
+    emitter.removeListener(this.eventEmitter);
   }
   render() {
     const arr = [1, 2, 3]

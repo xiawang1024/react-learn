@@ -176,7 +176,6 @@ module.exports = {
 									// https://github.com/facebookincubator/create-react-app/issues/2677
 									ident: 'postcss',
 									plugins: () => [
-										require('postcss-flexbugs-fixes'),
 										autoprefixer({
 											browsers: [
 												'>1%',
@@ -186,6 +185,7 @@ module.exports = {
 											],
 											flexbox: 'no-2009'
 										}),
+										require('postcss-flexbugs-fixes'),
 										postcssAspectRatioMini({}),
 										postcssPxToViewport({
 											viewportWidth: 750, // (Number) The width of the viewport.
