@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Prompt, withRouter } from 'react-router-dom'
+import { Prompt, withRouter } from 'react-router-dom'
 import { Button } from 'react-weui'
 
 import emitter from '../../utils/event'
@@ -14,9 +14,9 @@ class Home extends Component {
   }
   componentDidMount() {
     setTimeout(() => {
-      emitter.emit("callMe","Hello")
+      emitter.emit('callMe', 'Hello')
       console.log('call')
-    },3000)
+    }, 3000)
   }
   render() {
     return (
@@ -32,6 +32,5 @@ class Home extends Component {
     )
   }
 }
-
 
 export default withRouter(Home)

@@ -7,7 +7,6 @@ import configureStore from './store/configureStore.js'
 import 'weui'
 import 'react-weui/build/packages/react-weui.css'
 
-import './index.scss'
 import App from './App'
 // import './weChat/index';
 import registerServiceWorker from './registerServiceWorker'
